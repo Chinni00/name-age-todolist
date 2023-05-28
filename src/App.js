@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
+import TodoList from "./Components/TodoList";
+import Form from "./Components/Form";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [list, setList] = useState([
+    {
+      name: "vinod",
+      age: 25,
+      id: "l1",
+    },
+    {
+      name: "chandu",
+      age: 25,
+      id: "l2",
+    },
+  ]);
+
+  const additionHandler=(newItem)=>{
+   setList(prevList =>{
+    return [newItem,...prevList]
+   })
+  }
+
+  const subHandler =(id)=>{
+    let updatedList = list.filter(item => item.id !== id);
+    setList([...updatedList])
+  }
+
+  return <div className="App">
+    <Form  onAddition={additionHandler}/>
+    <TodoList onSub={subHandler} items={list} />
+  </div>;
 }
 
 export default App;
