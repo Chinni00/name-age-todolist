@@ -2,6 +2,7 @@ import "./App.css";
 import { useState } from "react";
 import TodoList from "./Components/TodoList";
 import Form from "./Components/Form";
+import Example from "./Components/Example";
 
 function App() {
   const [list, setList] = useState([
@@ -31,6 +32,7 @@ function App() {
   return <div className="App">
     <Form  onAddition={additionHandler}/>
     <TodoList onSub={subHandler} items={list} />
+    < Example item='vinod'/>
   </div>;
 }
 
